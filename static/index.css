@@ -1,0 +1,247 @@
+:root {
+  --bg: #f6f7f9;
+  --panel: #ffffff;
+  --text: #14171a;
+  --muted: #5b6b7a;
+  --accent: #3b82f6;
+  --ring: color-mix(in srgb, var(--accent) 35%, transparent);
+  --shadow: 0 6px 18px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04);
+
+  --radius: 12px;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+
+  --sidebar-w: 260px;
+  --max-content: 900px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0c1117;
+    --panel: #0f1722;
+    --text: #e6edf3;
+    --muted: #9aa7b3;
+    --accent: #60a5fa;
+    --ring: color-mix(in srgb, var(--accent) 45%, transparent);
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.45), 0 2px 12px rgba(0, 0, 0, 0.35);
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+*.no-margin {
+  margin: 0;
+  padding: 0;
+}
+*.big {
+  font-size: 2.5rem;
+}
+*.center {
+  text-align: center;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--text);
+  background: var(--bg);
+  font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell,
+    "Noto Sans", "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  display: grid;
+  grid-template-columns: var(--sidebar-w) 1fr;
+  grid-template-rows: 100dvh;
+  grid-template-areas: "sidebar main";
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+img {
+  max-width: 100%;
+  display: block;
+}
+
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  * {
+    transition: color 0.2s ease, background-color 0.2s ease,
+      border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  }
+}
+
+nav#sidebar {
+  grid-area: sidebar;
+  background: var(--panel);
+  border-right: 1px solid color-mix(in srgb, var(--text) 10%, transparent);
+  box-shadow: var(--shadow);
+  height: 100%;
+  overflow-y: auto;
+  position: sticky;
+  top: 0;
+  padding: var(--space-6) var(--space-4);
+}
+
+nav#sidebar > p {
+  margin: 0 0 var(--space-3);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+nav#sidebar > p#currently-viewing {
+  color: #fff;
+  font-size: 0.7rem;
+  text-align: center;
+}
+
+nav#sidebar > ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+ul#articles {
+  display: grid;
+  gap: var(--space-2);
+}
+
+ul#articles > li.article-li > a.article-a {
+  display: block;
+  padding: 0.55rem 0.65rem;
+  border-radius: 8px;
+  color: var(--text);
+  text-transform: none;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  background: transparent;
+  border: 1px solid transparent;
+}
+
+ul#articles > li.article-li > a.article-a:hover {
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  border-color: color-mix(in srgb, var(--accent) 35%, transparent);
+  transform: translateY(-1px);
+}
+
+main {
+  grid-area: main;
+  height: 100%;
+  overflow: auto;
+  padding: var(--space-6);
+  display: grid;
+  place-items: start center;
+}
+
+main > * {
+  width: min(100%, var(--max-content));
+}
+
+main > p,
+main > article,
+main > section {
+  background: var(--panel);
+  border: 1px solid color-mix(in srgb, var(--text) 10%, transparent);
+  border-radius: var(--radius);
+  padding: var(--space-5);
+  box-shadow: var(--shadow);
+}
+main > article,
+main > section {
+  overflow-y: auto;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+  margin: 0 0 var(--space-3);
+  letter-spacing: 0.01em;
+}
+p {
+  margin: 0 0 var(--space-4);
+  color: var(--text);
+}
+.small {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--text) 25%, transparent) transparent;
+}
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--text) 25%, transparent);
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in srgb, var(--text) 45%, transparent);
+}
+body::-webkit-scrollbar {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  :root {
+    --sidebar-w: 100%;
+  }
+
+  body {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+      "sidebar"
+      "main";
+  }
+
+  nav#sidebar {
+    position: relative;
+    top: auto;
+    border-right: none;
+    border-bottom: 1px solid color-mix(in srgb, var(--text) 10%, transparent);
+    padding: var(--space-4);
+  }
+
+  ul#articles {
+    grid-auto-flow: column;
+    grid-auto-columns: max-content;
+    overflow-x: auto;
+    gap: var(--space-2);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
