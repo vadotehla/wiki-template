@@ -86,3 +86,4 @@ app.listen(8080, () =>
     `${currentTime()}:   Listening on Port 8080 @ \x1b[1mhttp://localhost:8080\x1b[0m`
   )
 );
+
